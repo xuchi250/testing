@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch results from JSON file
     const fetchResults = async () => {
         try {
-            const response = await fetch('results.json');
+            const response = await fetch('./results.json');
             const data = await response.json();
             return data[currentLanguage] || [];
         } catch (err) {
