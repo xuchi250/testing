@@ -1,0 +1,14 @@
+.search-input {
+    border: 1px solid #d1d5db;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.search-button:hover {
+    background-color: #2563eb;
+}

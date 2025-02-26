@@ -1,0 +1,24 @@
+{
+    "en": [
+        {
+            "title": "Understanding Artificial Intelligence",
+            "url": "https://example.com/ai-basics",
+            "description": "Learn about the fundamentals of artificial intelligence.",
+            "source": "example.com"
+        },
+        {
+            "title": "The Future of Search Technology",
+            "url": "https://example.com/search-tech",
+            "description": "Explore how search engines are evolving.",
+            "source": "example.com"
+        }
+    ],
+    "es": [
+        {
+            "title": "Comprendiendo la Inteligencia Artificial",
+            "url": "https://example.com/es/ia-fundamentos",
+            "description": "Aprende sobre los fundamentos de la inteligencia artificial.",
+            "source": "example.com"
+        }
+    ]
+}
