@@ -6,33 +6,17 @@
     <title>Insight Search</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen flex flex-col items-center bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
     <header class="w-full flex justify-center pt-6 sm:pt-10">
         <div class="search-container max-w-xl w-full px-4">
             <div class="text-center mb-6">
-                <h1 class="logo mb-1 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Insight</h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400" id="tagline">Search powered by AI</p>
-            </div>
-            
-            <div class="flex justify-end mb-2">
-                <select id="languageSelector" class="text-sm rounded-md py-1 px-2">
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                    <option value="zh">中文</option>
-                    <option value="ja">日本語</option>
-                    <option value="ko">한국어</option>
-                    <option value="ru">Русский</option>
-                    <option value="ar">العربية</option>
-                    <option value="hi">हिन्दी</option>
-                </select>
+                <h1 class="logo mb-1 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Insight Search</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Search powered by AI</p>
             </div>
             
             <div class="relative mb-6">
-                <input type="text" id="searchInput" class="search-input w-full pl-12 pr-14 py-2 border rounded-full" placeholder="Search or describe what you're looking for...">
+                <input type="text" id="searchInput" class="search-input w-full pl-12 pr-14 py-2 border rounded-full" placeholder="Search the internet...">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
@@ -45,9 +29,6 @@
             
             <div class="flex justify-center space-x-4 mb-8">
                 <button id="searchBtn" class="search-button bg-blue-600 text-white py-2 px-6 rounded-full">Search</button>
-                <button id="aiBtn" class="bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 py-2 px-6 rounded-full">
-                    <i class="fas fa-robot mr-1"></i> AI Assist
-                </button>
             </div>
         </div>
     </header>
@@ -65,14 +46,14 @@
             
             <div id="noResults" class="hidden text-center py-8">
                 <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
-                <h3 id="noResultsTitle">No results found</h3>
-                <p id="noResultsText">Try different keywords or use the AI Assistant</p>
+                <h3>No results found</h3>
+                <p>Try different keywords.</p>
             </div>
         </div>
     </main>
 
     <footer class="w-full text-center py-4 text-sm text-gray-500 dark:text-gray-400">
-        <p id="footerText">© 2023 Insight Search. All rights reserved.</p>
+        <p>© 2023 Insight Search. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
