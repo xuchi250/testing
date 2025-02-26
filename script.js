@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
-    const aiBtn = document.getElementById('aiBtn');
-    const voiceSearchBtn = document.getElementById('voiceSearchBtn');
     const searchResults = document.getElementById('searchResults');
-    const noResults = document.getElementById('noResults');
     const loading = document.getElementById('loading');
-    const languageSelector = document.getElementById('languageSelector');
-    let currentLanguage = 'en';
+    const noResults = document.getElementById('noResults');
+
+    // Bing Search API Configuration
+    const API_KEY = 'YOUR_BING_API_KEY'; // Replace with your Bing API Key
+    const API_URL = 'https://api.bing.microsoft.com/v7.0/search';
 
     // Perform search
     const performSearch = async () => {
@@ -17,45 +17,43 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading();
         hideSections();
 
-        const results = await fetchResults();
-        const filteredResults = results.filter(result =>
-            result.title.toLowerCase().includes(query.toLowerCase()) ||
-            result.description.toLowerCase().includes(query.toLowerCase())
-        );
-
-        hideLoading();
-
-        if (filteredResults.length === 0) {
-            noResults.classList.remove('hidden');
-        } else {
-            displayResults(filteredResults);
-        }
-    };
-
-    // Fetch results from JSON file
-    const fetchResults = async () => {
         try {
-            const response = await fetch('./results.json');
+            const response = await fetch(`${API_URL}?q=${encodeURIComponent(query)}`, {
+                headers: {
+                    'Ocp-Apim-Subscription-Key': API_KEY
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch results');
+            }
+
             const data = await response.json();
-            return data[currentLanguage] || [];
-        } catch (err) {
-            console.error('Error fetching results:', err);
-            return [];
+            displayResults(data.webPages?.value || []);
+        } catch (error) {
+            console.error('Error performing search:', error);
+            noResults.classList.remove('hidden');
+        } finally {
+            hideLoading();
         }
     };
 
     // Display results
     const displayResults = (results) => {
         searchResults.innerHTML = '';
+        if (results.length === 0) {
+            noResults.classList.remove('hidden');
+            return;
+        }
+
         results.forEach(result => {
             const resultCard = document.createElement('div');
             resultCard.className = 'p-4 border rounded-lg';
             resultCard.innerHTML = `
                 <h3 class="text-lg font-bold">
-                    <a href="${result.url}" target="_blank" class="text-blue-600 hover:underline">${result.title}</a>
+                    <a href="${result.url}" target="_blank" class="text-blue-600 hover:underline">${result.name}</a>
                 </h3>
-                <p class="text-sm text-gray-500">${result.source}</p>
-                <p>${result.description}</p>
+                <p>${result.snippet}</p>
             `;
             searchResults.appendChild(resultCard);
         });
@@ -72,8 +70,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners
     searchBtn.addEventListener('click', performSearch);
-    languageSelector.addEventListener('change', (e) => {
-        currentLanguage = e.target.value;
-        searchInput.placeholder = `Search in ${currentLanguage}`;
-    });
 });
